@@ -9,12 +9,15 @@ namespace AluguelFesta.Dominio.ModuloCliente
 
         public override void AtualizarInformacoes(Cliente registroAtualizado)
         {
-            throw new NotImplementedException();
+            this.Nome = registroAtualizado.Nome;
         }
 
         public override string[] Validar()
         {
-            throw new NotImplementedException();
+            List<string> erros = new List<string>();
+            if (string.IsNullOrEmpty(Nome))
+                erros.Add("O campo 'nome' é obrigatório");
+            return erros.ToArray();
         }
     }
 }
