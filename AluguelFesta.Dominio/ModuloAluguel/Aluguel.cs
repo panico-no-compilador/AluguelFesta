@@ -1,10 +1,10 @@
 ﻿using AluguelFesta.Dominio.ModuloCliente;
-using AluguelFesta.Dominio.ModuloFesta;
+using AluguelFesta.Dominio.ModuloTema;
 
 namespace AluguelFesta.Dominio.ModuloAluguel
 {
     [Serializable]
-    internal class Aluguel : EntidadeBase<Aluguel>
+    public class Aluguel : EntidadeBase<Aluguel>
     {
         public int Desconto { get; set; }
         public decimal ValorEntrada { get; set; }
