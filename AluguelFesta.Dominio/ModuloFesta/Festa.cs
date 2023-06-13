@@ -1,6 +1,7 @@
 ﻿namespace AluguelFesta.Dominio.ModuloFesta
 {
-    internal class Festa : EntidadeBase<Festa>
+    [Serializable]
+    public class Festa : EntidadeBase<Festa>
     {
         TimeSpan InicioFesta { get; set; }
         TimeSpan TerminoFesta { get; set; }
