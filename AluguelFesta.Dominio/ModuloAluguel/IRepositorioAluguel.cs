@@ -1,6 +1,6 @@
 ﻿namespace AluguelFesta.Dominio.ModuloAluguel
 {
-    internal interface IRepositorioAluguel
+    public interface IRepositorioAluguel
     {
         void Inserir(Aluguel novoAluguel);
         void Editar(int id, Aluguel aluguel);
