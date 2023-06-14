@@ -6,7 +6,7 @@ namespace AluguelFesta.Dominio.ModuloAluguel
     [Serializable]
     public class Aluguel : EntidadeBase<Aluguel>
     {
-        public int Desconto { get; set; }
+        public decimal Desconto { get; set; }
         public decimal ValorEntrada { get; set; }
         public decimal ValorTotal { get; set; }
         public Cliente Cliente { get; set; }
@@ -16,7 +16,7 @@ namespace AluguelFesta.Dominio.ModuloAluguel
             
         }
 
-        public Aluguel(int desconto, decimal valorEntrada, decimal valorTotal, Cliente cliente, Tema tema)
+        public Aluguel(decimal desconto, decimal valorEntrada, decimal valorTotal, Cliente cliente, Tema tema)
         {
             this.Desconto = desconto;
             this.ValorEntrada = valorEntrada;
