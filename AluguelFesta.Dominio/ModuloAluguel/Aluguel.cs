@@ -27,6 +27,15 @@ namespace AluguelFesta.Dominio.ModuloAluguel
             Tema = tema;
         }
 
+        public Aluguel(decimal desconto, decimal valorEntrada, decimal valorTotal, Cliente cliente, Festa festa)
+        {
+            Desconto = desconto;
+            ValorEntrada = valorEntrada;
+            ValorTotal = valorTotal;
+            Cliente = cliente;
+            Festa = festa;
+        }
+
         public override void AtualizarInformacoes(Aluguel registroAtualizado)
         {
             this.Desconto = registroAtualizado.Desconto;
