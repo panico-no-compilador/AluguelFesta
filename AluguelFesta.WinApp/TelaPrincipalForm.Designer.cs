@@ -32,8 +32,8 @@
             menuStrip1 = new MenuStrip();
             toolStripMenuItem1 = new ToolStripMenuItem();
             clienteMenuItem = new ToolStripMenuItem();
-            cadatroDeTemaToolStripMenuItem = new ToolStripMenuItem();
-            cadastroDeAlugueisToolStripMenuItem = new ToolStripMenuItem();
+            temaMenuItem = new ToolStripMenuItem();
+            alugueisMenuItem = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
             btnInserir = new ToolStripButton();
             btnEditar = new ToolStripButton();
@@ -58,7 +58,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { clienteMenuItem, cadatroDeTemaToolStripMenuItem, cadastroDeAlugueisToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { clienteMenuItem, temaMenuItem, alugueisMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(99, 20);
             toolStripMenuItem1.Text = "Menu Principal";
@@ -70,17 +70,18 @@
             clienteMenuItem.Text = "Cadastro de Cliente";
             clienteMenuItem.Click += clienteMenuItem_Click;
             // 
-            // cadatroDeTemaToolStripMenuItem
+            // temaMenuItem
             // 
-            cadatroDeTemaToolStripMenuItem.Name = "cadatroDeTemaToolStripMenuItem";
-            cadatroDeTemaToolStripMenuItem.Size = new Size(186, 22);
-            cadatroDeTemaToolStripMenuItem.Text = "Cadatro de Tema";
+            temaMenuItem.Name = "temaMenuItem";
+            temaMenuItem.Size = new Size(186, 22);
+            temaMenuItem.Text = "Cadatro de Tema";
             // 
-            // cadastroDeAlugueisToolStripMenuItem
+            // alugueisMenuItem
             // 
-            cadastroDeAlugueisToolStripMenuItem.Name = "cadastroDeAlugueisToolStripMenuItem";
-            cadastroDeAlugueisToolStripMenuItem.Size = new Size(186, 22);
-            cadastroDeAlugueisToolStripMenuItem.Text = "Cadastro de Alugueis";
+            alugueisMenuItem.Name = "alugueisMenuItem";
+            alugueisMenuItem.Size = new Size(186, 22);
+            alugueisMenuItem.Text = "Cadastro de Alugueis";
+            alugueisMenuItem.Click += alugueisMenuItem_Click;
             // 
             // toolStrip1
             // 
@@ -197,8 +198,8 @@
         private ToolStripButton btnInserirItens;
         private ToolStripLabel toolStripTipoCadastro;
         private StatusStrip statusStrip1;
-        private ToolStripMenuItem cadatroDeTemaToolStripMenuItem;
-        private ToolStripMenuItem cadastroDeAlugueisToolStripMenuItem;
+        private ToolStripMenuItem temaMenuItem;
+        private ToolStripMenuItem alugueisMenuItem;
         private Panel painelRegistros;
     }
 }
