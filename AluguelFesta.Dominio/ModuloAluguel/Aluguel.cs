@@ -10,19 +10,21 @@ namespace AluguelFesta.Dominio.ModuloAluguel
         public decimal ValorEntrada { get; set; }
         public decimal ValorTotal { get; set; }
         public Cliente Cliente { get; set; }
+        public Festa Festa { get; set; }
         public Tema Tema { get; set; }
         public Aluguel()
         {
             
         }
 
-        public Aluguel(decimal desconto, decimal valorEntrada, decimal valorTotal, Cliente cliente, Tema tema)
+        public Aluguel(decimal desconto, decimal valorEntrada, decimal valorTotal, Cliente cliente, Festa festa, Tema tema)
         {
-            this.Desconto = desconto;
-            this.ValorEntrada = valorEntrada;
-            this.ValorTotal = valorTotal;
-            this.Cliente = cliente;
-            this.Tema = tema;
+            Desconto = desconto;
+            ValorEntrada = valorEntrada;
+            ValorTotal = valorTotal;
+            Cliente = cliente;
+            Festa = festa;
+            Tema = tema;
         }
 
         public override void AtualizarInformacoes(Aluguel registroAtualizado)
@@ -31,6 +33,7 @@ namespace AluguelFesta.Dominio.ModuloAluguel
             this.ValorEntrada = registroAtualizado.ValorEntrada;
             this.ValorTotal = registroAtualizado.ValorTotal;
             this.Cliente = registroAtualizado.Cliente;
+            this.Festa = registroAtualizado.Festa;
             this.Tema = registroAtualizado.Tema;
         }
 
