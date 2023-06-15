@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,10 +53,23 @@ namespace AluguelFesta.WinApp.ModuloCliente
         }
         private void btnGravar_Click_1(object sender, EventArgs e)
         {
-            string nome = tboxNome.Text;
-            int telefone = Convert.ToInt32(tboxTelefone.Text);
-            string email = tboxEmail.Text;
-            cliente = new Cliente(nome, telefone, email);
+            Cliente cliente = ObterCliente();
+            string[] erros = cliente.Validar();
+
+            if (erros.Length > 0)
+            {
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }
