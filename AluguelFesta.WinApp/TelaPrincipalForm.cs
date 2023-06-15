@@ -3,6 +3,7 @@ using AluguelFesta.Infra.Dados.Arquivo.Compartilhado;
 using AluguelFesta.WinApp.Compartilhado;
 using AluguelFesta.WinApp.ModuloCliente;
 using AluguelFesta.Infra.Dados.Arquivo.ModuloCliente;
+using System.Xml.Serialization;
 
 namespace AluguelFesta.WinApp
 {
@@ -12,6 +13,7 @@ namespace AluguelFesta.WinApp
         private ControladorBase controlador;
         private static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
         private IRepositorioCliente repositorioCliente = new RepositorioClienteArquivo(contextoDados);
+        
         public TelaPrincipalForm()
         {
             InitializeComponent();
@@ -27,10 +29,12 @@ namespace AluguelFesta.WinApp
         }
         private void clienteMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorCliente(repositorioCliente);
+            
             ConfigurarTelaPrincipal(controlador);
             HabilitarBotoesCrud(false);
         }
+
+        
 
 
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
