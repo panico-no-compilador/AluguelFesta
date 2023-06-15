@@ -12,34 +12,40 @@ namespace AluguelFesta.WinApp.ModuloAluguel
 {
     internal class ControladorAluguel : ControladorBase
     {
-        private IRepositorioAluguel repositorioCliente;
+        private IRepositorioAluguel repositorioAluguel;
+        private IRepositorioCliente repositorioCliente;
         private TabelaAluguelControl tabelaAluguel;
 
-        public ControladorAluguel(IRepositorioAluguel repositorioCliente)
+        public ControladorAluguel(
+            IRepositorioAluguel repositorioAluguel,
+            IRepositorioCliente repositorioCliente
+            )
         {
+            this.repositorioAluguel = repositorioAluguel;
             this.repositorioCliente = repositorioCliente;
         }
 
-        public override string ToolTipInserir { get { return "Inserir novo Cliente"; } }
-        public override string ToolTipEditar { get { return "Editar Cliente existente"; } }
-        public override string ToolTipExcluir { get { return "Excluir Cliente existente"; } }
+        public override string ToolTipInserir { get { return "Inserir novo Aluguel"; } }
+        public override string ToolTipEditar { get { return "Editar Aluguel existente"; } }
+        public override string ToolTipExcluir { get { return "Excluir Aluguel existente"; } }
 
         public override void Inserir()
         {
-            TelaAluguelForm telaCliente = new TelaAluguelForm();
-            DialogResult opcaoEscolhida = telaCliente.ShowDialog();
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes);
+            DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Aluguel cliente = telaCliente.ObterAluguel();
-                repositorioCliente.Inserir(cliente);
-                CarregarClientes();
+                Aluguel aluguel = telaAluguel.ObterAluguel();
+                repositorioAluguel.Inserir(aluguel);
             }
+            CarregarAlugueis();
         }
         public override void Editar()
         {
-            Aluguel cliente = ObterClienteSelecionado();
+            Aluguel aluguel = ObterClienteSelecionado();
 
-            if (cliente == null)
+            if (aluguel == null)
             {
                 MessageBox.Show(
                     $"Selecione um aluguel primeiro!",
@@ -49,23 +55,23 @@ namespace AluguelFesta.WinApp.ModuloAluguel
 
                 return;
             }
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes);
+            telaAluguel.Aluguel = aluguel;
 
-            TelaAluguelForm telaCliente = new TelaAluguelForm();
-            telaCliente.Cliente = cliente;
-
-            DialogResult opcaoEscolhida = telaCliente.ShowDialog();
+            DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                repositorioCliente.Editar(cliente.Id, telaCliente.ObterAluguel());
-                CarregarClientes();
+                repositorioAluguel.Editar(aluguel.Id, telaAluguel.ObterAluguel());
             }
+            CarregarAlugueis();
         }
         public override void Excluir()
         {
-            Aluguel cliente = ObterClienteSelecionado();
+            Aluguel aluguel = ObterClienteSelecionado();
 
-            if (cliente == null)
+            if (aluguel == null)
             {
                 MessageBox.Show(
                     $"Selecione um aluguel primeiro!",
@@ -78,7 +84,7 @@ namespace AluguelFesta.WinApp.ModuloAluguel
             }
 
             DialogResult opcaoEscolhida = MessageBox.Show(
-                $"Deseja excluir o aluguel {cliente.Nome}?",
+                $"Deseja excluir o aluguel do Sr(a). {aluguel.Cliente.Nome}?",
                 "Exclusão de Alugueis",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question
@@ -86,26 +92,29 @@ namespace AluguelFesta.WinApp.ModuloAluguel
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                repositorioCliente.Excluir(cliente);
-                CarregarClientes();
+                repositorioAluguel.Excluir(aluguel);
             }
+            CarregarAlugueis();
         }
         private Aluguel ObterClienteSelecionado()
         {
             int id = tabelaAluguel.ObterIdSelecionado();
-            return repositorioCliente.SelecionarPorId(id);
+            return repositorioAluguel.SelecionarPorId(id);
         }
-        private void CarregarClientes()
+        private void CarregarAlugueis()
         {
-            List<Aluguel> clientes = repositorioCliente.SelecionarTodos();
-
-            tabelaAluguel.AtualizarRegistros(clientes);
+            List<Aluguel> alugueis = repositorioAluguel.SelecionarTodos();
+            tabelaAluguel.AtualizarRegistros(alugueis);
+        }
+        private void CarregarAlugueis(List<Aluguel> alugueis)
+        {
+            tabelaAluguel.AtualizarRegistros(alugueis);
         }
         public override UserControl ObterListagem()
         {
             if (tabelaAluguel == null)
                 tabelaAluguel = new TabelaAluguelControl();
-            CarregarClientes();
+            CarregarAlugueis();
             return tabelaAluguel;
         }
         public override string ObterTipoCadastro()
@@ -113,5 +122,4 @@ namespace AluguelFesta.WinApp.ModuloAluguel
             return "Cadastro de Alugueis";
         }
     }
-}
 }

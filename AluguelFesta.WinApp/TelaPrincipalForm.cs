@@ -41,8 +41,6 @@ namespace AluguelFesta.WinApp
             ConfigurarTelaPrincipal(controlador);
             HabilitarBotoesCrud(false);
         }
-
-
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
         {
             toolStripTipoCadastro.Text = controladorBase.ObterTipoCadastro();

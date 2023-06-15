@@ -28,18 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            tboxNome = new TextBox();
             lblNomeCliente = new Label();
             btnCancelar = new Button();
             btnGravar = new Button();
+            lblTelefone = new Label();
+            lblEmail = new Label();
+            tboxTelefone = new TextBox();
+            tboxEmail = new TextBox();
             SuspendLayout();
             // 
-            // textBox1
+            // tboxNome
             // 
-            textBox1.Location = new Point(79, 32);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(189, 23);
-            textBox1.TabIndex = 0;
+            tboxNome.Location = new Point(106, 32);
+            tboxNome.Name = "tboxNome";
+            tboxNome.Size = new Size(162, 23);
+            tboxNome.TabIndex = 0;
             // 
             // lblNomeCliente
             // 
@@ -69,16 +73,53 @@
             btnGravar.TabIndex = 3;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click_1;
+            // 
+            // lblTelefone
+            // 
+            lblTelefone.AutoSize = true;
+            lblTelefone.Location = new Point(30, 76);
+            lblTelefone.Name = "lblTelefone";
+            lblTelefone.Size = new Size(54, 15);
+            lblTelefone.TabIndex = 4;
+            lblTelefone.Text = "Telefone:";
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(30, 114);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(39, 15);
+            lblEmail.TabIndex = 5;
+            lblEmail.Text = "Email:";
+            // 
+            // tboxTelefone
+            // 
+            tboxTelefone.Location = new Point(106, 73);
+            tboxTelefone.Name = "tboxTelefone";
+            tboxTelefone.Size = new Size(162, 23);
+            tboxTelefone.TabIndex = 6;
+            // 
+            // tboxEmail
+            // 
+            tboxEmail.Location = new Point(106, 114);
+            tboxEmail.Name = "tboxEmail";
+            tboxEmail.Size = new Size(162, 23);
+            tboxEmail.TabIndex = 7;
             // 
             // TelaCadastroClienteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(484, 166);
+            Controls.Add(tboxEmail);
+            Controls.Add(tboxTelefone);
+            Controls.Add(lblEmail);
+            Controls.Add(lblTelefone);
             Controls.Add(btnGravar);
             Controls.Add(btnCancelar);
             Controls.Add(lblNomeCliente);
-            Controls.Add(textBox1);
+            Controls.Add(tboxNome);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaCadastroClienteForm";
@@ -91,9 +132,13 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox tboxNome;
         private Label lblNomeCliente;
         private Button btnCancelar;
         private Button btnGravar;
+        private Label lblTelefone;
+        private Label lblEmail;
+        private TextBox tboxTelefone;
+        private TextBox tboxEmail;
     }
 }

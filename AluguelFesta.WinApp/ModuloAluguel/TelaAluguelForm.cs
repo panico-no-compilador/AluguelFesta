@@ -2,7 +2,7 @@
 using AluguelFesta.Dominio.ModuloCliente;
 using AluguelFesta.Dominio.ModuloTema;
 using AluguelFesta.WinApp.Compartilhado;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace AluguelFesta.WinApp.ModuloAluguel
 {
@@ -63,7 +63,7 @@ namespace AluguelFesta.WinApp.ModuloAluguel
             return aluguel;
         }
 
-        public void ConfigurarTela(Aluguel cliente)
+        public void ConfigurarTela(Aluguel aluguelSelecionado)
         {
             //txtNome.Text = cliente.Nome;
             //txtTelefone.Text = cliente.Telefone.ToString();
@@ -85,7 +85,7 @@ namespace AluguelFesta.WinApp.ModuloAluguel
                     tbEstado.Text)
                 );
 
-            decimal desconto = (Convert.ToDecimal(cliente.HistoricoAlugueis.Count) / 100) * total;
+            decimal desconto = 330;//TO-DO
             aluguel = new Aluguel(desconto, entrada, total, cliente, festa);
         }
     }
