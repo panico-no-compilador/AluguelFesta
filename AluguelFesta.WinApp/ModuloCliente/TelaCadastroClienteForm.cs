@@ -52,10 +52,17 @@ namespace AluguelFesta.WinApp.ModuloCliente
         }
         private void btnGravar_Click_1(object sender, EventArgs e)
         {
-            string nome = tboxNome.Text;
-            int telefone = Convert.ToInt32(tboxTelefone.Text);
-            string email = tboxEmail.Text;
-            cliente = new Cliente(nome, telefone, email);
+            this.cliente = ObterCliente();
+            string[] erros = cliente.Validar();
+
+            if (erros.Length > 0)
+            {
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }
