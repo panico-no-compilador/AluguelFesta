@@ -31,14 +31,15 @@ namespace AluguelFesta.WinApp.ModuloAluguel
 
         public override void Inserir()
         {
-            TelaAluguelForm telaAluguel = new TelaAluguelForm(repositorioCliente);
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes);
             DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
             {
                 Aluguel aluguel = telaAluguel.ObterAluguel();
                 repositorioAluguel.Inserir(aluguel);
-                CarregarClientes();
             }
+            CarregarAlugueis();
         }
         public override void Editar()
         {
@@ -54,8 +55,8 @@ namespace AluguelFesta.WinApp.ModuloAluguel
 
                 return;
             }
-
-            TelaAluguelForm telaAluguel = new TelaAluguelForm(repositorioCliente);
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes);
             telaAluguel.Aluguel = aluguel;
 
             DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
@@ -63,8 +64,8 @@ namespace AluguelFesta.WinApp.ModuloAluguel
             if (opcaoEscolhida == DialogResult.OK)
             {
                 repositorioAluguel.Editar(aluguel.Id, telaAluguel.ObterAluguel());
-                CarregarClientes();
             }
+            CarregarAlugueis();
         }
         public override void Excluir()
         {
@@ -92,25 +93,28 @@ namespace AluguelFesta.WinApp.ModuloAluguel
             if (opcaoEscolhida == DialogResult.OK)
             {
                 repositorioAluguel.Excluir(aluguel);
-                CarregarClientes();
             }
+            CarregarAlugueis();
         }
         private Aluguel ObterClienteSelecionado()
         {
             int id = tabelaAluguel.ObterIdSelecionado();
             return repositorioAluguel.SelecionarPorId(id);
         }
-        private void CarregarClientes()
+        private void CarregarAlugueis()
         {
             List<Aluguel> alugueis = repositorioAluguel.SelecionarTodos();
-
+            tabelaAluguel.AtualizarRegistros(alugueis);
+        }
+        private void CarregarAlugueis(List<Aluguel> alugueis)
+        {
             tabelaAluguel.AtualizarRegistros(alugueis);
         }
         public override UserControl ObterListagem()
         {
             if (tabelaAluguel == null)
                 tabelaAluguel = new TabelaAluguelControl();
-            CarregarClientes();
+            CarregarAlugueis();
             return tabelaAluguel;
         }
         public override string ObterTipoCadastro()
