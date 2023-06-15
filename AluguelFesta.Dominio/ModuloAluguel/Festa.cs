@@ -3,15 +3,15 @@
     [Serializable]
     public class Festa : EntidadeBase<Festa>
     {
-        TimeSpan InicioFesta { get; set; }
-        TimeSpan TerminoFesta { get; set; }
+        DateTime InicioFesta { get; set; }
+        DateTime TerminoFesta { get; set; }
         public Endereco Endereco { get; set; }
         public Festa()
         {
             
         }
 
-        public Festa(TimeSpan inicioFesta, TimeSpan terminoFesta, Endereco endereco)
+        public Festa(DateTime inicioFesta, DateTime terminoFesta, Endereco endereco)
         {
             InicioFesta = inicioFesta;
             TerminoFesta = terminoFesta;
@@ -38,7 +38,7 @@
                 erros.Add("O campo 'Numero' é obrigatório");
             if (this.Endereco.Cidade == null)
                 erros.Add("O campo 'Cidade' é obrigatório");
-            if (this.Endereco.Estad == null)
+            if (this.Endereco.Estado == null)
                 erros.Add("O campo 'Cidade' é obrigatório");
             return erros.ToArray();
         }
