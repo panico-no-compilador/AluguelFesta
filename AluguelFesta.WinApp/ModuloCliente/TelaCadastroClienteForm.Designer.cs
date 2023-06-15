@@ -127,6 +127,7 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro Cliente";
+            Load += TelaCadastroClienteForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
