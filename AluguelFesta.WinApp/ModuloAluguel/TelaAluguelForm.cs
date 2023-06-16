@@ -10,11 +10,15 @@ namespace AluguelFesta.WinApp.ModuloAluguel
     {
         Aluguel aluguel;
         IRepositorioCliente repositorioCliente;
-        public TelaAluguelForm(List<Cliente> clientes)
+        List<Cliente> clientes;
+        List<Tema> temas;
+        public TelaAluguelForm(List<Cliente> clientes, List<Tema> temas)
         {
-            //this.repositorioCliente = _repositorioCliente;
+            this.clientes = clientes;
+            this.temas = temas;
             InitializeComponent();
             this.ConfigurarDialog();
+            PopularComboBox(temas);
             PopularComboBox(clientes);
         }
         private void PopularComboBox(List<Cliente> clientes)
@@ -24,9 +28,15 @@ namespace AluguelFesta.WinApp.ModuloAluguel
             {
                 cboxClientes.Items.Add(cliente);
             }
-            //cboxClientes.DataSource = repositorioCliente.SelecionarTodos();
-            //cboxTema.DataSource = repositorioTema.SelecionarTodos();
             cboxClientes.DisplayMember = "Nome";
+        }
+        private void PopularComboBox(List<Tema> temas)
+        {
+            cboxClientes.Items.Clear();
+            foreach (Tema tema in temas)
+            {
+                cboxTema.Items.Add(tema);
+            }
             cboxTema.DisplayMember = "Nome";
         }
         public Aluguel Aluguel
@@ -65,28 +75,29 @@ namespace AluguelFesta.WinApp.ModuloAluguel
 
         public void ConfigurarTela(Aluguel aluguelSelecionado)
         {
-            //txtNome.Text = cliente.Nome;
-            //txtTelefone.Text = cliente.Telefone.ToString();
-            //txtEmail.Text = cliente.Email;
+            cboxClientes.DataSource = this.clientes;
+            cboxTema.DataSource = this.temas;
+            tbRua.Text = aluguelSelecionado.Festa.Endereco.Rua;
+            tbNumeroCasaApto.Text = aluguelSelecionado.Festa.Endereco.Numero.ToString();
+            tbCidade.Text = aluguelSelecionado.Festa.Endereco.Cidade;
+            tbEstado.Text = aluguelSelecionado.Festa.Endereco.Estado;
+            tbValorEntrada.Text = aluguelSelecionado.Tema.CalcularTotal().ToString();
+            //tbValorDesconto.Text = aluguelSelecionado.CalcularDesconto().ToString();
+            //tbValorTotal.Text = aluguelSelecionado.CalcularDesconto().ToString();
         }
-        private void btnGravar_Click(object sender, EventArgs e)
+        private void btnGravar_Click_1(object sender, EventArgs e)
         {
-            //Tema tema = (Tema)cboxTema.SelectedValue;
-            Cliente cliente = (Cliente)cboxClientes.SelectedValue;
-            decimal entrada = 500;
-            decimal total = 1000;
-            Festa festa = new Festa(
-                Convert.ToDateTime(tbHorarioInicio.Text),
-                Convert.ToDateTime(tbHorarioTermino.Text),
-                new Endereco(
-                    tbRua.Text,
-                    Convert.ToInt32(tbNumeroCasaApto.Text),
-                    tbCidade.Text,
-                    tbEstado.Text)
-                );
+            this.aluguel = ObterAluguel();
+            string[] erros = aluguel.Validar();
 
-            decimal desconto = 330;//TO-DO
-            aluguel = new Aluguel(desconto, entrada, total, cliente, festa);
+            if (erros.Length > 0)
+            {
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }
