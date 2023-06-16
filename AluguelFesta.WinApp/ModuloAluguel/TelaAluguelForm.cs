@@ -24,7 +24,7 @@ namespace AluguelFesta.WinApp.ModuloAluguel
             {
                 cboxClientes.Items.Add(cliente);
             }
-            cboxClientes.DataSource = repositorioCliente.SelecionarTodos();
+            //cboxClientes.DataSource = repositorioCliente.SelecionarTodos();
             //cboxTema.DataSource = repositorioTema.SelecionarTodos();
             cboxClientes.DisplayMember = "Nome";
             cboxTema.DisplayMember = "Nome";
