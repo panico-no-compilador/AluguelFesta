@@ -38,7 +38,7 @@ namespace AluguelFesta.WinApp.ModuloCliente
         {
 
             string nome = tboxNome.Text;
-            int telefone = (int)Convert.ToInt32(tboxTelefone.Text);
+            int telefone = Convert.ToInt32(tboxTelefone.Text);
             string email = tboxEmail.Text;
             Cliente cliente = new Cliente(nome, telefone, email);
             return cliente;
