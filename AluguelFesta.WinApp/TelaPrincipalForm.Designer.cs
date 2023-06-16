@@ -75,6 +75,7 @@
             temaMenuItem.Name = "temaMenuItem";
             temaMenuItem.Size = new Size(186, 22);
             temaMenuItem.Text = "Cadatro de Tema";
+            temaMenuItem.Click += temaMenuItem_Click;
             // 
             // alugueisMenuItem
             // 
@@ -125,6 +126,7 @@
             btnExcluir.Size = new Size(23, 22);
             btnExcluir.Text = "Excluir";
             btnExcluir.ToolTipText = "toolStripExcluir";
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // toolStripSeparator1
             // 
