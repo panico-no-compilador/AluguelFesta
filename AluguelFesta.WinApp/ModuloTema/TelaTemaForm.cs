@@ -37,17 +37,6 @@ namespace AluguelFesta.WinApp.ModuloTema
         {
             tbNomeTema.Text = temaSelecionado.Nome;
         }
-        public Tema Tema 
-        {
-            get 
-                { 
-                    return tema;
-                } 
-            set
-            {
-                tbNomeTema.Text = value.Nome;
-            }
-        }
         public Tema ObterTema()
         {
             string nome = tbNomeTema.Text;
