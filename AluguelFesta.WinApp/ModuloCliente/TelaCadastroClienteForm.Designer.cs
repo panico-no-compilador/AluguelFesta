@@ -63,7 +63,6 @@
             btnCancelar.TabIndex = 2;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
-            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGravar
             // 
@@ -127,7 +126,6 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro Cliente";
-            Load += TelaCadastroClienteForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
