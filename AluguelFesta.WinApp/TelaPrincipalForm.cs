@@ -37,7 +37,7 @@ namespace AluguelFesta.WinApp
         {
             controlador = new ControladorTema(repositorioTema);
             ConfigurarTelaPrincipal(controlador);
-            HabilitarBotoesCrud(false);
+            HabilitarBotoesCrud(true);
         }
         private void alugueisMenuItem_Click(object sender, EventArgs e)
         {
@@ -93,6 +93,16 @@ namespace AluguelFesta.WinApp
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             controlador.Excluir();
+        }
+
+        private void btnInserirItens_Click(object sender, EventArgs e)
+        {
+            controlador.AdicionarItens();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            controlador.Editar();
         }
     }
 }
