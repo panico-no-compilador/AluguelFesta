@@ -12,12 +12,14 @@ namespace AluguelFesta.Infra.Dados.Arquivo.Compartilhado
         public List<Cliente> clientes;
         public List<Aluguel> alugueis;
         public List<Item> itens;
+        public List<Tema> temas;
 
         public ContextoDados()
         {
             clientes = new List<Cliente>();
             alugueis = new List<Aluguel>();
             itens = new List<Item>();
+            temas = new List<Tema>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -44,6 +46,7 @@ namespace AluguelFesta.Infra.Dados.Arquivo.Compartilhado
                     this.clientes = contextoDo.clientes;
                     this.alugueis = contextoDo.alugueis;
                     this.itens = contextoDo.itens;
+                    this.temas = contextoDo.temas;
                 }
             }
         }
