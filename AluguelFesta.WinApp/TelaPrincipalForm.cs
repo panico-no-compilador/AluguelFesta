@@ -9,6 +9,7 @@ using AluguelFesta.Dominio.ModuloAluguel;
 using AluguelFesta.Infra.Dados.Arquivo.ModuloAluguel;
 using AluguelFesta.WinApp.ModuloTema;
 using AluguelFesta.Dominio.ModuloTema;
+using System;
 
 namespace AluguelFesta.WinApp
 {
@@ -94,15 +95,14 @@ namespace AluguelFesta.WinApp
         {
             controlador.Excluir();
         }
-
         private void btnInserirItens_Click(object sender, EventArgs e)
         {
             controlador.AdicionarItens();
         }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             controlador.Editar();
+
         }
     }
 }

@@ -28,7 +28,6 @@ namespace AluguelFesta.WinApp.ModuloTema
         public override void Editar()
         {
             Tema temaSelecionada = ObterTemaSelecionada();
-
             if (temaSelecionada == null)
             {
                 MessageBox.Show(
@@ -40,13 +39,10 @@ namespace AluguelFesta.WinApp.ModuloTema
                 return;
             }
             TelaTemaForm telaTema = new TelaTemaForm();
-
             telaTema.Tema = temaSelecionada;
-
             DialogResult opcaoEscolhida = telaTema.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
             {
-
                 repositorioTema.Editar(temaSelecionada.Id, telaTema.ObterTema());
                 CarregarTemas();
             }
