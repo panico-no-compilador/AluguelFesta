@@ -25,7 +25,10 @@
         {
             return 2;
         }
-
+        public void AdicionarItem(Item item)
+        {
+            Itens.Add(item);
+        }
         public override string[] Validar()
         {
             List<string> erros = new List<string>();
