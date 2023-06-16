@@ -14,7 +14,7 @@ namespace AluguelFesta.WinApp.Compartilhado
 
 
         public virtual void Filtrar() { }
-        public virtual void Adicionar() { }
+        public virtual void AdicionarItens() { }
         public abstract void Inserir();
         public abstract void Editar();
         public abstract void Excluir();
