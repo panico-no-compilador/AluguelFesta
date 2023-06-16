@@ -94,5 +94,11 @@ namespace AluguelFesta.WinApp
         {
             controlador.Excluir();
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            controlador.Editar();
+
+        }
     }
 }

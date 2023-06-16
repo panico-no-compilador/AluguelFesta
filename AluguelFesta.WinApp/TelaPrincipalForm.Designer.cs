@@ -115,6 +115,7 @@
             btnEditar.Size = new Size(23, 22);
             btnEditar.Text = "Editar";
             btnEditar.ToolTipText = "toolStripEditar";
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
             // 
