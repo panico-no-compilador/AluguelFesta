@@ -1,11 +1,14 @@
 using AluguelFesta.Dominio.ModuloCliente;
 using AluguelFesta.Infra.Dados.Arquivo.Compartilhado;
+using AluguelFesta.Infra.Dados.Arquivo.ModuloTema;
 using AluguelFesta.WinApp.Compartilhado;
 using AluguelFesta.WinApp.ModuloCliente;
 using AluguelFesta.Infra.Dados.Arquivo.ModuloCliente;
 using AluguelFesta.WinApp.ModuloAluguel;
 using AluguelFesta.Dominio.ModuloAluguel;
 using AluguelFesta.Infra.Dados.Arquivo.ModuloAluguel;
+using AluguelFesta.WinApp.ModuloTema;
+using AluguelFesta.Dominio.ModuloTema;
 
 namespace AluguelFesta.WinApp
 {
@@ -16,6 +19,7 @@ namespace AluguelFesta.WinApp
         private static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
         private IRepositorioCliente repositorioCliente = new RepositorioClienteArquivo(contextoDados);
         private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelArquivo(contextoDados);
+        private IRepositorioTema repositorioTema = new RepositorioTemaArquivo(contextoDados);
         public TelaPrincipalForm()
         {
             InitializeComponent();
@@ -28,6 +32,12 @@ namespace AluguelFesta.WinApp
                     telaPrincipal = new TelaPrincipalForm();
                 return telaPrincipal;
             }
+        }
+        private void temaMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorTema(repositorioTema);
+            ConfigurarTelaPrincipal(controlador);
+            HabilitarBotoesCrud(false);
         }
         private void alugueisMenuItem_Click(object sender, EventArgs e)
         {
@@ -75,10 +85,14 @@ namespace AluguelFesta.WinApp
                 btnInserirItens.Enabled = false;
             }
         }
-
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            controlador.Excluir();
         }
     }
 }

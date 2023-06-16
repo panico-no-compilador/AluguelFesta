@@ -1,6 +1,6 @@
 ﻿namespace AluguelFesta.WinApp.ModuloTema
 {
-    partial class Form1
+    partial class TelaTemaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            tbNomeTema = new TextBox();
             btnGravar = new Button();
             btnCancelar = new Button();
             SuspendLayout();
@@ -39,67 +37,55 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(59, 47);
+            label1.Location = new Point(11, 38);
             label1.Name = "label1";
             label1.Size = new Size(43, 15);
             label1.TabIndex = 0;
             label1.Text = "Nome:";
             // 
-            // label2
+            // tbNomeTema
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(59, 88);
-            label2.Name = "label2";
-            label2.Size = new Size(67, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Valor Total :";
-            label2.TextAlign = ContentAlignment.TopRight;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(117, 44);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(123, 85);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 3;
+            tbNomeTema.Location = new Point(60, 35);
+            tbNomeTema.Name = "tbNomeTema";
+            tbNomeTema.Size = new Size(183, 23);
+            tbNomeTema.TabIndex = 1;
             // 
             // btnGravar
             // 
-            btnGravar.Location = new Point(251, 119);
+            btnGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnGravar.Location = new Point(119, 118);
             btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(80, 57);
-            btnGravar.TabIndex = 4;
+            btnGravar.Size = new Size(75, 40);
+            btnGravar.TabIndex = 13;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(337, 119);
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnCancelar.Location = new Point(200, 118);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(80, 57);
-            btnCancelar.TabIndex = 5;
+            btnCancelar.Size = new Size(82, 40);
+            btnCancelar.TabIndex = 12;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // TelaTemaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(451, 188);
-            Controls.Add(btnCancelar);
+            ClientSize = new Size(294, 170);
             Controls.Add(btnGravar);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
+            Controls.Add(btnCancelar);
+            Controls.Add(tbNomeTema);
             Controls.Add(label1);
-            Name = "Form1";
-            Text = "Form1";
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "TelaTemaForm";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Cadastro Tema";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -107,9 +93,7 @@
         #endregion
 
         private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox tbNomeTema;
         private Button btnGravar;
         private Button btnCancelar;
     }
