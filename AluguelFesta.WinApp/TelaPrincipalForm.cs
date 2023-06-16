@@ -41,7 +41,7 @@ namespace AluguelFesta.WinApp
         }
         private void alugueisMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorAluguel(repositorioAluguel, repositorioCliente);
+            controlador = new ControladorAluguel(repositorioAluguel, repositorioCliente, repositorioTema);
             ConfigurarTelaPrincipal(controlador);
             HabilitarBotoesCrud(false);
         }
