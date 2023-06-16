@@ -37,14 +37,10 @@ namespace AluguelFesta.WinApp
         }
         private void clienteMenuItem_Click(object sender, EventArgs e)
         {
-            
+            controlador = new ControladorCliente(repositorioCliente);
             ConfigurarTelaPrincipal(controlador);
             HabilitarBotoesCrud(false);
         }
-
-        
-
-
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
         {
             toolStripTipoCadastro.Text = controladorBase.ObterTipoCadastro();
@@ -79,7 +75,6 @@ namespace AluguelFesta.WinApp
                 btnInserirItens.Enabled = false;
             }
         }
-
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
