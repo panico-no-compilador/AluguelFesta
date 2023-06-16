@@ -21,6 +21,18 @@ namespace AluguelFesta.WinApp.ModuloTema
             InitializeComponent();
             this.ConfigurarDialog();
         }
+        public Tema Tema
+        {
+            get
+            {
+                return this.tema;
+            }
+            set
+            {
+                tbNomeTema.Text = value.Nome;
+            }
+
+        }
         public void ConfigurarTelaDeEdicao(Tema temaSelecionado)
         {
             tbNomeTema.Text = temaSelecionado.Nome;
