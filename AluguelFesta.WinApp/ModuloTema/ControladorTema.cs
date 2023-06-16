@@ -14,7 +14,6 @@ namespace AluguelFesta.WinApp.ModuloTema
         public override string ToolTipInserir { get { return "Inserir novo Tema"; } }
         public override string ToolTipEditar { get { return "Editar Tema existente"; } }
         public override string ToolTipExcluir { get { return "Excluir Tema existente"; } }
-
         public override void Inserir()
         {
             TelaTemaForm telaTema = new TelaTemaForm();
@@ -29,6 +28,7 @@ namespace AluguelFesta.WinApp.ModuloTema
         public override void Editar()
         {
             Tema temaSelecionada = ObterTemaSelecionada();
+
             if (temaSelecionada == null)
             {
                 MessageBox.Show(
@@ -40,16 +40,17 @@ namespace AluguelFesta.WinApp.ModuloTema
                 return;
             }
             TelaTemaForm telaTema = new TelaTemaForm();
-            telaTema.ConfigurarTelaDeEdicao(temaSelecionada);
+
+            telaTema.Tema = temaSelecionada;
+
             DialogResult opcaoEscolhida = telaTema.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Tema tema = telaTema.ObterTema();
-                repositorioTema.Editar(tema.Id, tema);
+
+                repositorioTema.Editar(temaSelecionada.Id, telaTema.ObterTema());
                 CarregarTemas();
             }
         }
-
         public override void Excluir()
         {
             Tema temaSelecionada = ObterTemaSelecionada();
@@ -79,10 +80,6 @@ namespace AluguelFesta.WinApp.ModuloTema
         {
             int id = tabelaTema.ObterIdSelecionado();
             return repositorioTema.SelecionarPorId(id);
-        }
-        private void CarregarTemas(List<Tema> tema)
-        {
-            tabelaTema.AtualizarRegistros(tema);
         }
         public override UserControl ObterListagem()
         {
@@ -131,41 +128,32 @@ namespace AluguelFesta.WinApp.ModuloTema
             }
         }
          */
-        /*
-        public override void Adicionar()
+        public override void AdicionarItens()
         {
-            Tema temaSelecionada = ObterTarefaSelecionada();
+            Tema temaSelecionado = ObterTemaSelecionada();
 
-            if (temaSelecionada == null)
+            if (temaSelecionado == null)
             {
                 MessageBox.Show(
-                    "Selecione uma tarefa primeiro",
-                    "Adição de Itens da Tarefa",
+                    "Selecione um tema primeiro",
+                    "Adição de Itens do Tema",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation
                     );
-
                 return;
             }
+            TelaItensTemaForm telaCadastroItensTema = new TelaItensTemaForm(temaSelecionado);
 
-            TelaItensTarefaForm telaCadastroItensTarefa = new TelaItensTarefaForm(temaSelecionada);
-
-            DialogResult opcaoEscolhida = telaCadastroItensTarefa.ShowDialog();
+            DialogResult opcaoEscolhida = telaCadastroItensTema.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                List<Item> itensParaAdicionar = telaCadastroItensTarefa.ObterItensCadastrados();
-
-                foreach (ItemTarefa item in itensParaAdicionar)
-                {
-                    temaSelecionada.AdicionarItem(item);
-                }
-
-                repositorioTema.Editar(temaSelecionada.Id, temaSelecionada);
-                CarregarTarefas();
+                Item itensParaAdicionar = telaCadastroItensTema.Item;
+                temaSelecionado.AdicionarItem(itensParaAdicionar);
+                repositorioTema.Editar(temaSelecionado.Id, temaSelecionado);
             }
+            CarregarTemas();
         }
-        */
         private void CarregarTemas()
         {
             List<Tema> temas = repositorioTema.SelecionarTodos();
