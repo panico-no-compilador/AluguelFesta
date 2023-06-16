@@ -1,23 +1,35 @@
 ﻿namespace AluguelFesta.Dominio.ModuloTema
 {
     [Serializable]
-    public abstract class Item : EntidadeBase<Item>
+    public class Item : EntidadeBase<Item>
     {
-        string Nome { get; set; }
-        public double Valor { get; set; }
+        public string Nome { get; set; }
+        public decimal Valor { get; set; }
         public Item()
         {
 
         }
 
+        public Item(string nome, decimal valor)
+        {
+            Nome = nome;
+            Valor = valor;
+        }
+
         public override void AtualizarInformacoes(Item registroAtualizado)
         {
-            throw new NotImplementedException();
+            Nome = registroAtualizado.Nome;
+            Valor = registroAtualizado.Valor;
         }
 
         public override string[] Validar()
         {
-            throw new NotImplementedException();
+            List<string> erros = new List<string>();
+            if (string.IsNullOrEmpty(Nome))
+                erros.Add("O campo 'nome' é obrigatório"); 
+            if (this.Valor == null)
+                erros.Add("O campo 'Valor' é obrigatório");
+            return erros.ToArray();
         }
     }
 }
