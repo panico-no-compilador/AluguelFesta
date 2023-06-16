@@ -3,6 +3,9 @@ using AluguelFesta.Infra.Dados.Arquivo.Compartilhado;
 using AluguelFesta.WinApp.Compartilhado;
 using AluguelFesta.WinApp.ModuloCliente;
 using AluguelFesta.Infra.Dados.Arquivo.ModuloCliente;
+using AluguelFesta.WinApp.ModuloAluguel;
+using AluguelFesta.Dominio.ModuloAluguel;
+using AluguelFesta.Infra.Dados.Arquivo.ModuloAluguel;
 
 namespace AluguelFesta.WinApp
 {
@@ -12,6 +15,7 @@ namespace AluguelFesta.WinApp
         private ControladorBase controlador;
         private static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
         private IRepositorioCliente repositorioCliente = new RepositorioClienteArquivo(contextoDados);
+        private IRepositorioAluguel repositorioAluguel = new RepositorioAluguelArquivo(contextoDados);
         public TelaPrincipalForm()
         {
             InitializeComponent();
@@ -25,14 +29,18 @@ namespace AluguelFesta.WinApp
                 return telaPrincipal;
             }
         }
+        private void alugueisMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorAluguel(repositorioAluguel, repositorioCliente);
+            ConfigurarTelaPrincipal(controlador);
+            HabilitarBotoesCrud(false);
+        }
         private void clienteMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorCliente(repositorioCliente);
             ConfigurarTelaPrincipal(controlador);
             HabilitarBotoesCrud(false);
         }
-
-
         private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
         {
             toolStripTipoCadastro.Text = controladorBase.ObterTipoCadastro();
@@ -67,7 +75,6 @@ namespace AluguelFesta.WinApp
                 btnInserirItens.Enabled = false;
             }
         }
-
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();

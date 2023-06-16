@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Compartilhado\" />
     <Folder Include="ModuloCliente\" />
+    <Folder Include="ModuloAluguel\" />
   </ItemGroup>
 
   <ItemGroup>
