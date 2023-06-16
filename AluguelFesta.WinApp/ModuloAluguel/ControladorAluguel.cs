@@ -1,5 +1,6 @@
 ﻿using AluguelFesta.Dominio.ModuloAluguel;
 using AluguelFesta.Dominio.ModuloCliente;
+using AluguelFesta.Dominio.ModuloTema;
 using AluguelFesta.WinApp.Compartilhado;
 using AluguelFesta.WinApp.ModuloCliente;
 using System;
@@ -14,15 +15,18 @@ namespace AluguelFesta.WinApp.ModuloAluguel
     {
         private IRepositorioAluguel repositorioAluguel;
         private IRepositorioCliente repositorioCliente;
+        private IRepositorioTema repositorioTema;
         private TabelaAluguelControl tabelaAluguel;
 
         public ControladorAluguel(
             IRepositorioAluguel repositorioAluguel,
-            IRepositorioCliente repositorioCliente
+            IRepositorioCliente repositorioCliente,
+            IRepositorioTema repositorioTema
             )
         {
             this.repositorioAluguel = repositorioAluguel;
             this.repositorioCliente = repositorioCliente;
+            this.repositorioTema = repositorioTema;
         }
 
         public override string ToolTipInserir { get { return "Inserir novo Aluguel"; } }
@@ -32,7 +36,8 @@ namespace AluguelFesta.WinApp.ModuloAluguel
         public override void Inserir()
         {
             List<Cliente> clientes = repositorioCliente.SelecionarTodos();
-            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes);
+            List<Tema> temas = repositorioTema.SelecionarTodos();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes,temas);
             DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
             if (opcaoEscolhida == DialogResult.OK)
             {
@@ -56,7 +61,8 @@ namespace AluguelFesta.WinApp.ModuloAluguel
                 return;
             }
             List<Cliente> clientes = repositorioCliente.SelecionarTodos();
-            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes);
+            List<Tema> temas = repositorioTema.SelecionarTodos();
+            TelaAluguelForm telaAluguel = new TelaAluguelForm(clientes, temas);
             telaAluguel.Aluguel = aluguel;
 
             DialogResult opcaoEscolhida = telaAluguel.ShowDialog();
