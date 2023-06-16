@@ -5,10 +5,20 @@
     {
         public string Nome { get; set; }
         public List<Item> Itens { get; set; }
+        public Tema()
+        {
+            
+        }
+
+        public Tema(string nome)
+        {
+            Nome = nome;
+            Itens = new List<Item>();
+        }
 
         public override void AtualizarInformacoes(Tema registroAtualizado)
         {
-            throw new NotImplementedException();
+            Nome = registroAtualizado.Nome;
         }
 
         public decimal CalcularTotal()
@@ -18,7 +28,10 @@
 
         public override string[] Validar()
         {
-            throw new NotImplementedException();
+            List<string> erros = new List<string>();
+            if (string.IsNullOrEmpty(Nome))
+                erros.Add("O campo 'nome' é obrigatório");
+            return erros.ToArray();
         }
     }
 }

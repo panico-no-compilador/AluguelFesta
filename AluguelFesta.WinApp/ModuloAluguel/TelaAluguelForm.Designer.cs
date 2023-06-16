@@ -29,10 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            tbValorDesconto = new MaskedTextBox();
-            tbValorEntrada = new MaskedTextBox();
             label2 = new Label();
-            tbValorTotal = new MaskedTextBox();
             label3 = new Label();
             label4 = new Label();
             cboxClientes = new ComboBox();
@@ -52,6 +49,9 @@
             tbNumeroCasaApto = new TextBox();
             tbCidade = new TextBox();
             tbEstado = new TextBox();
+            tbValorTotal = new TextBox();
+            tbValorEntrada = new TextBox();
+            tbValorDesconto = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -63,24 +63,6 @@
             label1.TabIndex = 0;
             label1.Text = "Desconto: ";
             // 
-            // tbValorDesconto
-            // 
-            tbValorDesconto.Location = new Point(296, 145);
-            tbValorDesconto.Mask = "$";
-            tbValorDesconto.Name = "tbValorDesconto";
-            tbValorDesconto.Size = new Size(113, 23);
-            tbValorDesconto.TabIndex = 1;
-            tbValorDesconto.TextAlign = HorizontalAlignment.Center;
-            // 
-            // tbValorEntrada
-            // 
-            tbValorEntrada.Location = new Point(76, 142);
-            tbValorEntrada.Mask = "$";
-            tbValorEntrada.Name = "tbValorEntrada";
-            tbValorEntrada.Size = new Size(125, 23);
-            tbValorEntrada.TabIndex = 3;
-            tbValorEntrada.TextAlign = HorizontalAlignment.Center;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -89,15 +71,6 @@
             label2.Size = new Size(50, 15);
             label2.TabIndex = 2;
             label2.Text = "Entrada:";
-            // 
-            // tbValorTotal
-            // 
-            tbValorTotal.Location = new Point(76, 171);
-            tbValorTotal.Mask = "$";
-            tbValorTotal.Name = "tbValorTotal";
-            tbValorTotal.Size = new Size(125, 23);
-            tbValorTotal.TabIndex = 5;
-            tbValorTotal.TextAlign = HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -151,6 +124,7 @@
             btnGravar.TabIndex = 11;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click_1;
             // 
             // btnCancelar
             // 
@@ -268,11 +242,35 @@
             tbEstado.TabIndex = 23;
             tbEstado.TextAlign = HorizontalAlignment.Center;
             // 
+            // tbValorTotal
+            // 
+            tbValorTotal.Location = new Point(76, 171);
+            tbValorTotal.Name = "tbValorTotal";
+            tbValorTotal.Size = new Size(125, 23);
+            tbValorTotal.TabIndex = 24;
+            // 
+            // tbValorEntrada
+            // 
+            tbValorEntrada.Location = new Point(76, 142);
+            tbValorEntrada.Name = "tbValorEntrada";
+            tbValorEntrada.Size = new Size(125, 23);
+            tbValorEntrada.TabIndex = 25;
+            // 
+            // tbValorDesconto
+            // 
+            tbValorDesconto.Location = new Point(294, 145);
+            tbValorDesconto.Name = "tbValorDesconto";
+            tbValorDesconto.Size = new Size(113, 23);
+            tbValorDesconto.TabIndex = 26;
+            // 
             // TelaAluguelForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(421, 225);
+            Controls.Add(tbValorDesconto);
+            Controls.Add(tbValorEntrada);
+            Controls.Add(tbValorTotal);
             Controls.Add(tbEstado);
             Controls.Add(tbCidade);
             Controls.Add(tbNumeroCasaApto);
@@ -291,11 +289,8 @@
             Controls.Add(label5);
             Controls.Add(cboxClientes);
             Controls.Add(label4);
-            Controls.Add(tbValorTotal);
             Controls.Add(label3);
-            Controls.Add(tbValorEntrada);
             Controls.Add(label2);
-            Controls.Add(tbValorDesconto);
             Controls.Add(label1);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -321,9 +316,6 @@
         private Label label11;
         private ComboBox cboxClientes;
         private ComboBox cboxTema;
-        private MaskedTextBox tbValorDesconto;
-        private MaskedTextBox tbValorEntrada;
-        private MaskedTextBox tbValorTotal;
         private MaskedTextBox tbHorarioInicio;
         private MaskedTextBox tbHorarioTermino;
         private TextBox tbRua;
@@ -332,5 +324,8 @@
         private TextBox tbEstado;
         private Button btnGravar;
         private Button btnCancelar;
+        private TextBox tbValorTotal;
+        private TextBox tbValorEntrada;
+        private TextBox tbValorDesconto;
     }
 }
