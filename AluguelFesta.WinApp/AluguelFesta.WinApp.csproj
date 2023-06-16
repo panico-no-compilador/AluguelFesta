@@ -15,9 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Compartilhado\Resources\" />
-    <Folder Include="ModuloAluguel\" />
-    <Folder Include="ModuloFesta\" />
-    <Folder Include="ModuloTema\" />
+    <Folder Include="ModuloCliente\" />
   </ItemGroup>
 
   <ItemGroup>
