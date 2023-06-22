@@ -1,14 +1,7 @@
-﻿using AluguelFesta.Dominio.ModuloTema;
+﻿using AluguelFesta.Dominio.ModuloCliente;
+using AluguelFesta.Dominio.ModuloTema;
 using AluguelFesta.WinApp.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AluguelFesta.WinApp.ModuloTema
 {
@@ -24,7 +17,7 @@ namespace AluguelFesta.WinApp.ModuloTema
             ConfigurarColunas();
             gridItens.ConfigurarGridSomenteLeitura();
             gridItens.ConfigurarGridZebrado();
-            CarregarItem();
+            AtualizarRegistros(Tema.Itens);
         }
         private void ConfigurarColunas()
         {
@@ -66,33 +59,19 @@ namespace AluguelFesta.WinApp.ModuloTema
                 tbValorItem.Text = value.Valor.ToString();
             }
         }
-        public void AtualizarRegistros(List<Item> itens)
+        public string ObterItemSelecionado()
         {
-            gridItens.Rows.Clear();
-
-            foreach (Item item in itens)
-            {
-                gridItens.Rows.Add(
-                    item.Id,
-                    item.Nome,
-                    item.Valor
-                    );
-            }
-        }
-        public int ObterIdSelecionado()
-        {
-            int id;
+            string nome;
             try
             {
-                id = Convert.ToInt32(gridItens.SelectedRows[0].Cells["Id"].Value);
+                nome = gridItens.SelectedRows[0].Cells["Nome"].Value.ToString();
             }
             catch
             {
-                id = -1;
+                nome = "";
             }
-            return id;
+            return nome;
         }
-
         private void ConfigurarTela(Tema tema)
         {
             tbNomeTema.Text = tema.Nome;
@@ -109,13 +88,12 @@ namespace AluguelFesta.WinApp.ModuloTema
             string[] erros = item.Validar();
             Tema.Itens.Add(this.item);
             AtualizarRegistros(Tema.Itens);
-            CarregarItem();
         }
-
-        private void CarregarItem()
+        public void AtualizarRegistros(List<Item> itens)
         {
             gridItens.Rows.Clear();
-            foreach (Item item in Tema.Itens)
+
+            foreach (Item item in itens)
             {
                 gridItens.Rows.Add(
                     item.Nome,
@@ -123,14 +101,31 @@ namespace AluguelFesta.WinApp.ModuloTema
                     );
             }
         }
-
         private void btnDeletarItem_Click(object sender, EventArgs e)
         {
-
+            string nomeSelecionado = ObterItemSelecionado();
+            if (nomeSelecionado != "")
+            {
+                Item itemSelecionado = Tema.Itens.FirstOrDefault(i => i.Nome == nomeSelecionado);
+                if (itemSelecionado != null)
+                {
+                    Tema.Itens.Remove(itemSelecionado);
+                    AtualizarRegistros(Tema.Itens);
+                }
+            }
         }
-        //public List<Item> ObterItensCadastrados()
-        //{
-        //    return tabelaItens.Items.Cast<Item>().ToList();
-        //}
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            string[] erros = this.item.Validar();
+
+            if (erros.Length > 0)
+            {
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
+        }
     }
 }
