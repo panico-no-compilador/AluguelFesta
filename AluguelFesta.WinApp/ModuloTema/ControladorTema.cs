@@ -90,40 +90,6 @@ namespace AluguelFesta.WinApp.ModuloTema
         {
             return "Cadastro de Temas";
         }
-        /*
-        public override void ConcluirItens()
-        {
-            Tarefa tarefaSelecionada = ObterTarefaSelecionada();
-            if (tarefaSelecionada == null)
-            {
-                MessageBox.Show(
-                    "Selecione uma tarefa primeiro",
-                    "Atualização de Itens da Tarefa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation
-                    );
-
-                return;
-            }
-            TelaConcluirItensTarefaForm telaAtualizacaoItensTarefa = new TelaConcluirItensTarefaForm(tarefaSelecionada);
-            DialogResult opcaoEscolhida = telaAtualizacaoItensTarefa.ShowDialog();
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                List<ItemTarefa> itensMarcados = telaAtualizacaoItensTarefa.ObterItensMarcados();
-                List<ItemTarefa> itensPendentes = telaAtualizacaoItensTarefa.ObterItensPendentes();
-                foreach (ItemTarefa item in itensMarcados)
-                {
-                    tarefaSelecionada.ConcluirItem(item);
-                }
-                foreach (ItemTarefa item in itensPendentes)
-                {
-                    tarefaSelecionada.DesmarcarItem(item);
-                }
-                repositorioTema.Editar(tarefaSelecionada.id, tarefaSelecionada);
-                CarregarTarefas();
-            }
-        }
-         */
         public override void AdicionarItens()
         {
             Tema temaSelecionado = ObterTemaSelecionada();
@@ -144,8 +110,6 @@ namespace AluguelFesta.WinApp.ModuloTema
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Item itensParaAdicionar = telaCadastroItensTema.Item;
-                temaSelecionado.AdicionarItem(itensParaAdicionar);
                 repositorioTema.Editar(temaSelecionado.Id, temaSelecionado);
             }
             CarregarTemas();
