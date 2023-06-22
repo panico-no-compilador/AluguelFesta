@@ -1,15 +1,5 @@
-﻿using AluguelFesta.Dominio.ModuloCliente;
-using AluguelFesta.Dominio.ModuloTema;
+﻿using AluguelFesta.Dominio.ModuloTema;
 using AluguelFesta.WinApp.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AluguelFesta.WinApp.ModuloTema
 {
@@ -31,7 +21,6 @@ namespace AluguelFesta.WinApp.ModuloTema
             {
                 tbNomeTema.Text = value.Nome;
             }
-
         }
         public void ConfigurarTelaDeEdicao(Tema temaSelecionado)
         {
@@ -42,7 +31,6 @@ namespace AluguelFesta.WinApp.ModuloTema
             string nome = tbNomeTema.Text;
             return new Tema(nome);
         }
-
         private void btnGravar_Click(object sender, EventArgs e)
         {
             this.tema = ObterTema();
